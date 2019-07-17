@@ -1,5 +1,6 @@
 # PortraitNet
 Code for the paper ["PortraitNet: Real-time portrait segmentation network for mobile device".](https://www.sciencedirect.com/science/article/pii/S0097849319300305) @ CAD&Graphics 2019
+
 Fork from [dong-x16/PortraitNet](https://github.com/dong-x16/PortraitNet)
 
 ---
