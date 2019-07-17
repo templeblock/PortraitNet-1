@@ -594,20 +594,19 @@ def main(args):
     cudnn.benchmark = True
     assert args.model in ['PortraitNet', 'ENet', 'BiSeNet'], 'Error!, <model> should in [PortraitNet, ENet, BiSeNet]'
     
-    config_path = args.config_path
     print ('===========> loading config <============')
+    config_path = args.config_path
     print ("config path: ", config_path)
     with open(config_path,'rb') as f:
         cont = f.read()
     cf = load(cont)
-    
-    print ('===========> loading data <===========')
+
     exp_args = edict()
     
-    exp_args.istrain = cf['istrain'] # set the mode 
+    exp_args.istrain = cf['istrain'] # set the mode
     exp_args.task = cf['task'] # only support 'seg' now
     exp_args.datasetlist = cf['datasetlist']
-    exp_args.model_root = cf['model_root'] 
+    exp_args.model_root = cf['model_root']
     exp_args.data_root = cf['data_root']
     exp_args.file_root = cf['file_root']
 
@@ -617,17 +616,17 @@ def main(args):
         shutil.rmtree(logs_path)
     logger_train = Logger(logs_path + 'train')
     logger_test = Logger(logs_path + 'test')
-    
+
     # the height of input images, default=224
     exp_args.input_height = cf['input_height']
     # the width of input images, default=224
     exp_args.input_width = cf['input_width']
-    
+
     # if exp_args.video=True, add prior channel for input images, default=False
     exp_args.video = cf['video']
     # the probability to set empty prior channel, default=0.5
     exp_args.prior_prob = cf['prior_prob']
-    
+
     # whether to add boundary auxiliary loss, default=False
     exp_args.addEdge = cf['addEdge']
     # the weight of boundary auxiliary loss, default=0.1
@@ -659,18 +658,19 @@ def main(args):
     # if exp_args.useDeconvGroup==True, set groups=input_channel in nn.ConvTranspose2d
     exp_args.useDeconvGroup = cf['useDeconvGroup'] 
     
+    print ('===========> loading data <===========')
     # set training dataset
     exp_args.istrain = True
     dataset_train = Human(exp_args)
     print ("image number in training: ", len(dataset_train))
-    dataLoader_train = torch.utils.data.DataLoader(dataset_train, batch_size=args.batchsize, 
+    dataLoader_train = torch.utils.data.DataLoader(dataset_train, batch_size=args.batchsize,
                                                    shuffle=True, num_workers= args.workers)
     
     # set testing dataset
     exp_args.istrain = False
     dataset_test = Human(exp_args)
     print ("image number in testing: ", len(dataset_test))
-    dataLoader_test = torch.utils.data.DataLoader(dataset_test, batch_size=1, 
+    dataLoader_test = torch.utils.data.DataLoader(dataset_test, batch_size=1,
                                                   shuffle=False, num_workers=args.workers)
     
     exp_args.istrain = True
@@ -758,7 +758,7 @@ def main(args):
         if loss < minLoss:
             minLoss = loss
             is_best = True
-        
+
         save_checkpoint({
             'epoch': epoch+1,
             'minLoss': minLoss,
@@ -775,7 +775,7 @@ if __name__ == '__main__':
                         type=str, help='the config path of the model')
     
     parser.add_argument('--workers', default=4, type=int, help='number of data loading workers')
-    parser.add_argument('--batchsize', default=64, type=int, help='mini-batch size')
+    parser.add_argument('--batchsize', default=4, type=int, help='mini-batch size')
     parser.add_argument('--lr', default=0.001, type=float, help='initial learning rate')
     parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
     parser.add_argument('--weightdecay', default=5e-4, type=float, help='weight decay')
