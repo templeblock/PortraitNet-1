@@ -771,7 +771,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', default='PortraitNet', type=str, 
                         help='<model> should in [PortraitNet, ENet, BiSeNet]')
     parser.add_argument('--config_path', 
-                        default='/home/dongx12/PortraitNet/config/model_mobilenetv2_without_auxiliary_losses.yaml', 
+                        default='/home/anicca/Program/python/PortraitNet/config/model_mobilenetv2_without_auxiliary_losses.yaml', 
                         type=str, help='the config path of the model')
     
     parser.add_argument('--workers', default=4, type=int, help='number of data loading workers')
