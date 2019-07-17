@@ -12,7 +12,7 @@ from scipy.ndimage.filters import gaussian_filter
 from PIL import Image, ImageEnhance, ImageOps, ImageFile  
 
 import sys
-sys.path.insert(0, '/home/dongx12/Data/cocoapi/PythonAPI/')
+sys.path.insert(0, '/home/anicca/Program/cocoapi/PythonAPI/')
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from pycocotools import mask as maskUtils

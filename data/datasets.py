@@ -11,8 +11,8 @@ class Human(data.Dataset):
         self.exp_args = exp_args
         self.task = exp_args.task
         self.datasetlist = exp_args.datasetlist
-        self.data_root = exp_args.data_root # data_root = '/home/dongx12/Data/'
-        self.file_root = exp_args.file_root # file_root = '/home/dongx12/PortraitNet/data/select_data/'
+        self.data_root = exp_args.data_root
+        self.file_root = exp_args.file_root
         
         self.datasets = {}
         self.imagelist = []

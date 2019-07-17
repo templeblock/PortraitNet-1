@@ -1,7 +1,6 @@
 data_root: /home/anicca/Program/python/Data/
 file_root: /home/anicca/Program/python/PortraitNet/data/select_data/
 model_root: /home/anicca/Program/python/PortraitNet/myExp/mobilenetv2_eg1800/single_224_without_group/
-# model_root: /home/dongx12/PortraitNet/myexp/mobilenetv2_supervise_portrait/both_224_without_group/
 
 istrain: True
 task: 'seg'
